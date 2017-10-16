@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hong.admin.dao.mapper.order.OrderFormalMapper">
+    <resultMap id="BaseResultMap" type="com.hong.admin.dao.entity.order.OrderFormal">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="order_app_id" property="orderAppId" jdbcType="INTEGER"/>
+        <result column="nurse_id" property="nurseId" jdbcType="INTEGER"/>
+        <result column="broker_id" property="brokerId" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="customer_id" property="customerId" jdbcType="INTEGER"/>
+        <result column="from_date" property="fromDate" jdbcType="DATE"/>
+        <result column="to_date" property="toDate" jdbcType="DATE"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, order_app_id, nurse_id, broker_id, type, create_time, status, code, customer_id, 
+    from_date, to_date
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap"
+            parameterType="com.hong.admin.dao.entity.order.OrderFormalExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from order_formal
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from order_formal
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order_formal
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.hong.admin.dao.entity.order.OrderFormalExample">
+        delete from order_formal
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.hong.admin.dao.entity.order.OrderFormal">
+    insert into order_formal (id, order_app_id, nurse_id, 
+      broker_id, type, create_time, 
+      status, code, customer_id, 
+      from_date, to_date)
+    values (#{id,jdbcType=INTEGER}, #{orderAppId,jdbcType=INTEGER}, #{nurseId,jdbcType=INTEGER}, 
+      #{brokerId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{customerId,jdbcType=INTEGER}, 
+      #{fromDate,jdbcType=DATE}, #{toDate,jdbcType=DATE})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hong.admin.dao.entity.order.OrderFormal">
+        insert into order_formal
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="orderAppId != null">
+                order_app_id,
+            </if>
+            <if test="nurseId != null">
+                nurse_id,
+            </if>
+            <if test="brokerId != null">
+                broker_id,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="code != null">
+                code,
+            </if>
+            <if test="customerId != null">
+                customer_id,
+            </if>
+            <if test="fromDate != null">
+                from_date,
+            </if>
+            <if test="toDate != null">
+                to_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="orderAppId != null">
+                #{orderAppId,jdbcType=INTEGER},
+            </if>
+            <if test="nurseId != null">
+                #{nurseId,jdbcType=INTEGER},
+            </if>
+            <if test="brokerId != null">
+                #{brokerId,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="customerId != null">
+                #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="fromDate != null">
+                #{fromDate,jdbcType=DATE},
+            </if>
+            <if test="toDate != null">
+                #{toDate,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.hong.admin.dao.entity.order.OrderFormalExample"
+            resultType="java.lang.Integer">
+        select count(*) from order_formal
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update order_formal
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.orderAppId != null">
+                order_app_id = #{record.orderAppId,jdbcType=INTEGER},
+            </if>
+            <if test="record.nurseId != null">
+                nurse_id = #{record.nurseId,jdbcType=INTEGER},
+            </if>
+            <if test="record.brokerId != null">
+                broker_id = #{record.brokerId,jdbcType=INTEGER},
+            </if>
+            <if test="record.type != null">
+                type = #{record.type,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.status != null">
+                status = #{record.status,jdbcType=VARCHAR},
+            </if>
+            <if test="record.code != null">
+                code = #{record.code,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customerId != null">
+                customer_id = #{record.customerId,jdbcType=INTEGER},
+            </if>
+            <if test="record.fromDate != null">
+                from_date = #{record.fromDate,jdbcType=DATE},
+            </if>
+            <if test="record.toDate != null">
+                to_date = #{record.toDate,jdbcType=DATE},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update order_formal
+        set id = #{record.id,jdbcType=INTEGER},
+        order_app_id = #{record.orderAppId,jdbcType=INTEGER},
+        nurse_id = #{record.nurseId,jdbcType=INTEGER},
+        broker_id = #{record.brokerId,jdbcType=INTEGER},
+        type = #{record.type,jdbcType=VARCHAR},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        status = #{record.status,jdbcType=VARCHAR},
+        code = #{record.code,jdbcType=VARCHAR},
+        customer_id = #{record.customerId,jdbcType=INTEGER},
+        from_date = #{record.fromDate,jdbcType=DATE},
+        to_date = #{record.toDate,jdbcType=DATE}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hong.admin.dao.entity.order.OrderFormal">
+        update order_formal
+        <set>
+            <if test="orderAppId != null">
+                order_app_id = #{orderAppId,jdbcType=INTEGER},
+            </if>
+            <if test="nurseId != null">
+                nurse_id = #{nurseId,jdbcType=INTEGER},
+            </if>
+            <if test="brokerId != null">
+                broker_id = #{brokerId,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="customerId != null">
+                customer_id = #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="fromDate != null">
+                from_date = #{fromDate,jdbcType=DATE},
+            </if>
+            <if test="toDate != null">
+                to_date = #{toDate,jdbcType=DATE},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hong.admin.dao.entity.order.OrderFormal">
+    update order_formal
+    set order_app_id = #{orderAppId,jdbcType=INTEGER},
+      nurse_id = #{nurseId,jdbcType=INTEGER},
+      broker_id = #{brokerId,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      from_date = #{fromDate,jdbcType=DATE},
+      to_date = #{toDate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+    <select id="selectByExamplePage" resultMap="BaseResultMap"
+            parameterType="com.hong.admin.dao.entity.order.OrderFormalExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from order_formal
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectJsInfoByParam" resultType="map">
+        select a.id,a.type,a.code from order_formal a,nurse b
+        where a.nurse_id=b.id and a.create_time between #{fromDate,jdbcType=TIMESTAMP} and #{toDate,jdbcType=TIMESTAMP}
+        <if test="brokerId != 0">
+            and a.broker_id=#{brokerId}
+        </if>
+        <if test="nurseName != null">
+            and b.name like #{nurseName}
+        </if>
+        order by a.create_time desc
+    </select>
+
+    <select id="selectJsInfoByParamPage" resultType="map">
+        select a.id,a.type,a.code,a.nurse_id nurseid from order_formal a,nurse b
+        where a.nurse_id=b.id and a.create_time between #{fromDate,jdbcType=TIMESTAMP} and #{toDate,jdbcType=TIMESTAMP}
+        <if test="brokerId != 0">
+            and a.broker_id=#{brokerId}
+        </if>
+        <if test="nurseName != null">
+            and b.name like #{nurseName}
+        </if>
+        order by a.create_time desc
+    </select>
+</mapper>

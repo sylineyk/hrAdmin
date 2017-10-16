@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hong.admin.dao.mapper.broker.BrokerMapper">
+    <resultMap id="BaseResultMap" type="com.hong.admin.dao.entity.broker.Broker">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="img_path" jdbcType="VARCHAR" property="imgPath"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="company_id" jdbcType="INTEGER" property="companyId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="idcard" jdbcType="VARCHAR" property="idcard"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="xl" jdbcType="VARCHAR" property="xl"/>
+        <result column="mz" jdbcType="VARCHAR" property="mz"/>
+        <result column="jy" jdbcType="INTEGER" property="jy"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="bank_code" jdbcType="VARCHAR" property="bankCode"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, phone_number, password, img_path, create_time, company_id, name, sex, idcard, 
+    age, xl, mz, jy, status, bank_code
+  </sql>
+    <select id="selectByExample" parameterType="com.hong.admin.dao.entity.broker.BrokerExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from broker
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from broker
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from broker
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.hong.admin.dao.entity.broker.BrokerExample">
+        delete from broker
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.hong.admin.dao.entity.broker.Broker">
+    insert into broker (id, phone_number, password, 
+      img_path, create_time, company_id, 
+      name, sex, idcard, 
+      age, xl, mz, jy, 
+      status, bank_code)
+    values (#{id,jdbcType=INTEGER}, #{phoneNumber,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{imgPath,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{companyId,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
+      #{age,jdbcType=INTEGER}, #{xl,jdbcType=VARCHAR}, #{mz,jdbcType=VARCHAR}, #{jy,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{bankCode,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hong.admin.dao.entity.broker.Broker">
+        insert into broker
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="phoneNumber != null">
+                phone_number,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="imgPath != null">
+                img_path,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="companyId != null">
+                company_id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="idcard != null">
+                idcard,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="xl != null">
+                xl,
+            </if>
+            <if test="mz != null">
+                mz,
+            </if>
+            <if test="jy != null">
+                jy,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="bankCode != null">
+                bank_code,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="phoneNumber != null">
+                #{phoneNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="imgPath != null">
+                #{imgPath,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="companyId != null">
+                #{companyId,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="idcard != null">
+                #{idcard,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=INTEGER},
+            </if>
+            <if test="xl != null">
+                #{xl,jdbcType=VARCHAR},
+            </if>
+            <if test="mz != null">
+                #{mz,jdbcType=VARCHAR},
+            </if>
+            <if test="jy != null">
+                #{jy,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="bankCode != null">
+                #{bankCode,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.hong.admin.dao.entity.broker.BrokerExample"
+            resultType="java.lang.Integer">
+        select count(*) from broker
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update broker
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.phoneNumber != null">
+                phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="record.password != null">
+                password = #{record.password,jdbcType=VARCHAR},
+            </if>
+            <if test="record.imgPath != null">
+                img_path = #{record.imgPath,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.companyId != null">
+                company_id = #{record.companyId,jdbcType=INTEGER},
+            </if>
+            <if test="record.name != null">
+                name = #{record.name,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sex != null">
+                sex = #{record.sex,jdbcType=VARCHAR},
+            </if>
+            <if test="record.idcard != null">
+                idcard = #{record.idcard,jdbcType=VARCHAR},
+            </if>
+            <if test="record.age != null">
+                age = #{record.age,jdbcType=INTEGER},
+            </if>
+            <if test="record.xl != null">
+                xl = #{record.xl,jdbcType=VARCHAR},
+            </if>
+            <if test="record.mz != null">
+                mz = #{record.mz,jdbcType=VARCHAR},
+            </if>
+            <if test="record.jy != null">
+                jy = #{record.jy,jdbcType=INTEGER},
+            </if>
+            <if test="record.status != null">
+                status = #{record.status,jdbcType=VARCHAR},
+            </if>
+            <if test="record.bankCode != null">
+                bank_code = #{record.bankCode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update broker
+        set id = #{record.id,jdbcType=INTEGER},
+        phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
+        password = #{record.password,jdbcType=VARCHAR},
+        img_path = #{record.imgPath,jdbcType=VARCHAR},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        company_id = #{record.companyId,jdbcType=INTEGER},
+        name = #{record.name,jdbcType=VARCHAR},
+        sex = #{record.sex,jdbcType=VARCHAR},
+        idcard = #{record.idcard,jdbcType=VARCHAR},
+        age = #{record.age,jdbcType=INTEGER},
+        xl = #{record.xl,jdbcType=VARCHAR},
+        mz = #{record.mz,jdbcType=VARCHAR},
+        jy = #{record.jy,jdbcType=INTEGER},
+        status = #{record.status,jdbcType=VARCHAR},
+        bank_code = #{record.bankCode,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hong.admin.dao.entity.broker.Broker">
+        update broker
+        <set>
+            <if test="phoneNumber != null">
+                phone_number = #{phoneNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="imgPath != null">
+                img_path = #{imgPath,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="idcard != null">
+                idcard = #{idcard,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=INTEGER},
+            </if>
+            <if test="xl != null">
+                xl = #{xl,jdbcType=VARCHAR},
+            </if>
+            <if test="mz != null">
+                mz = #{mz,jdbcType=VARCHAR},
+            </if>
+            <if test="jy != null">
+                jy = #{jy,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="bankCode != null">
+                bank_code = #{bankCode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hong.admin.dao.entity.broker.Broker">
+    update broker
+    set phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      img_path = #{imgPath,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      company_id = #{companyId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      xl = #{xl,jdbcType=VARCHAR},
+      mz = #{mz,jdbcType=VARCHAR},
+      jy = #{jy,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="selectBrokerInfoById" resultType="map">
+        select a.bank_code bankCode,a.id,a.sex,a.idcard,a.age,a.xl,a.mz,a.jy,a.img_path path,a.name,a.phone_number phone,b.name
+        companyname,b.address from broker a left join company b
+        on a.company_id=b.id where a.id=#{brokerId}
+    </select>
+
+
+    <select id="selectBrokerInfoByParam" resultType="map">
+        select a.id,a.name,a.sex,a.phone_number phone,b.name companyname from broker a left join company
+        b
+        on a.company_id=b.id where a.status!='0'
+        <if test="param != null">
+            and (a.phone_number like #{param} or a.name like #{param} or b.name like #{param} or a.idcard like
+            #{param}
+            or a.xl like #{param} or a.mz like #{param})
+        </if>
+        order by a.create_time desc
+    </select>
+
+    <select id="selectBrokerNmaeByPhone" resultType="string">
+        select a.name  from broker a
+         where a.status!='0' and phone_number=#{phone}
+    </select>
+
+    <update id="updateByPhoneNum">
+        update broker
+        set
+        password = #{password}
+        where phone_number = #{phoneNumber}
+    </update>
+</mapper>

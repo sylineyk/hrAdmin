@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hong.admin.dao.mapper.nurse.NurseImportMapper">
+    <resultMap id="BaseResultMap" type="com.hong.admin.dao.entity.nurse.NurseImport">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="id_card" jdbcType="VARCHAR" property="idCard"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="zodiac" jdbcType="VARCHAR" property="zodiac"/>
+        <result column="xl" jdbcType="VARCHAR" property="xl"/>
+        <result column="mz" jdbcType="VARCHAR" property="mz"/>
+        <result column="height" jdbcType="INTEGER" property="height"/>
+        <result column="weight" jdbcType="INTEGER" property="weight"/>
+        <result column="jkzk" jdbcType="VARCHAR" property="jkzk"/>
+        <result column="experience" jdbcType="DOUBLE" property="experience"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="marriage" jdbcType="VARCHAR" property="marriage"/>
+        <result column="yy" jdbcType="VARCHAR" property="yy"/>
+        <result column="cookie" jdbcType="VARCHAR" property="cookie"/>
+        <result column="work" jdbcType="VARCHAR" property="work"/>
+        <result column="sydq" jdbcType="VARCHAR" property="sydq"/>
+        <result column="ssjjr" jdbcType="VARCHAR" property="ssjjr"/>
+        <result column="ssgs" jdbcType="VARCHAR" property="ssgs"/>
+        <result column="salary" jdbcType="INTEGER" property="salary"/>
+        <result column="ht_start_date" jdbcType="DATE" property="htStartDate"/>
+        <result column="ht_end_date" jdbcType="DATE" property="htEndDate"/>
+        <result column="khyh" jdbcType="VARCHAR" property="khyh"/>
+        <result column="bank_code" jdbcType="VARCHAR" property="bankCode"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="level" jdbcType="VARCHAR" property="level"/>
+        <result column="flag" jdbcType="VARCHAR" property="flag"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="result" jdbcType="VARCHAR" property="result"/>
+        <result column="broker_id" jdbcType="INTEGER" property="brokerId"/>
+        <result column="ywxh" jdbcType="VARCHAR" property="ywxh"/>
+        <result column="gspj" jdbcType="VARCHAR" property="gspj"/>
+        <result column="szdq" jdbcType="VARCHAR" property="szdq"/>
+        <result column="fwdq" jdbcType="VARCHAR" property="fwdq"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, name, sex, phone, id_card, age, zodiac, xl, mz, height, weight, jkzk, experience, 
+    address, marriage, yy, cookie, work, sydq, ssjjr, ssgs, salary, ht_start_date, ht_end_date, 
+    khyh, bank_code, type, level, flag, create_time, result, broker_id, ywxh, gspj, szdq, 
+    fwdq
+  </sql>
+    <select id="selectByExample" parameterType="com.hong.admin.dao.entity.nurse.NurseImportExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from nurse_import
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from nurse_import
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from nurse_import
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.hong.admin.dao.entity.nurse.NurseImportExample">
+        delete from nurse_import
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.hong.admin.dao.entity.nurse.NurseImport">
+    insert into nurse_import (id, name, sex, 
+      phone, id_card, age, 
+      zodiac, xl, mz, height, 
+      weight, jkzk, experience, 
+      address, marriage, yy, 
+      cookie, work, sydq, 
+      ssjjr, ssgs, salary, 
+      ht_start_date, ht_end_date, khyh, 
+      bank_code, type, level, 
+      flag, create_time, result, 
+      broker_id, ywxh, gspj, 
+      szdq, fwdq)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
+      #{zodiac,jdbcType=VARCHAR}, #{xl,jdbcType=VARCHAR}, #{mz,jdbcType=VARCHAR}, #{height,jdbcType=INTEGER}, 
+      #{weight,jdbcType=INTEGER}, #{jkzk,jdbcType=VARCHAR}, #{experience,jdbcType=DOUBLE}, 
+      #{address,jdbcType=VARCHAR}, #{marriage,jdbcType=VARCHAR}, #{yy,jdbcType=VARCHAR}, 
+      #{cookie,jdbcType=VARCHAR}, #{work,jdbcType=VARCHAR}, #{sydq,jdbcType=VARCHAR}, 
+      #{ssjjr,jdbcType=VARCHAR}, #{ssgs,jdbcType=VARCHAR}, #{salary,jdbcType=INTEGER}, 
+      #{htStartDate,jdbcType=DATE}, #{htEndDate,jdbcType=DATE}, #{khyh,jdbcType=VARCHAR}, 
+      #{bankCode,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{result,jdbcType=VARCHAR}, 
+      #{brokerId,jdbcType=INTEGER}, #{ywxh,jdbcType=VARCHAR}, #{gspj,jdbcType=VARCHAR}, 
+      #{szdq,jdbcType=VARCHAR}, #{fwdq,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hong.admin.dao.entity.nurse.NurseImport">
+        insert into nurse_import
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="idCard != null">
+                id_card,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="zodiac != null">
+                zodiac,
+            </if>
+            <if test="xl != null">
+                xl,
+            </if>
+            <if test="mz != null">
+                mz,
+            </if>
+            <if test="height != null">
+                height,
+            </if>
+            <if test="weight != null">
+                weight,
+            </if>
+            <if test="jkzk != null">
+                jkzk,
+            </if>
+            <if test="experience != null">
+                experience,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="marriage != null">
+                marriage,
+            </if>
+            <if test="yy != null">
+                yy,
+            </if>
+            <if test="cookie != null">
+                cookie,
+            </if>
+            <if test="work != null">
+                work,
+            </if>
+            <if test="sydq != null">
+                sydq,
+            </if>
+            <if test="ssjjr != null">
+                ssjjr,
+            </if>
+            <if test="ssgs != null">
+                ssgs,
+            </if>
+            <if test="salary != null">
+                salary,
+            </if>
+            <if test="htStartDate != null">
+                ht_start_date,
+            </if>
+            <if test="htEndDate != null">
+                ht_end_date,
+            </if>
+            <if test="khyh != null">
+                khyh,
+            </if>
+            <if test="bankCode != null">
+                bank_code,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="level != null">
+                level,
+            </if>
+            <if test="flag != null">
+                flag,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="result != null">
+                result,
+            </if>
+            <if test="brokerId != null">
+                broker_id,
+            </if>
+            <if test="ywxh != null">
+                ywxh,
+            </if>
+            <if test="gspj != null">
+                gspj,
+            </if>
+            <if test="szdq != null">
+                szdq,
+            </if>
+            <if test="fwdq != null">
+                fwdq,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="idCard != null">
+                #{idCard,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=INTEGER},
+            </if>
+            <if test="zodiac != null">
+                #{zodiac,jdbcType=VARCHAR},
+            </if>
+            <if test="xl != null">
+                #{xl,jdbcType=VARCHAR},
+            </if>
+            <if test="mz != null">
+                #{mz,jdbcType=VARCHAR},
+            </if>
+            <if test="height != null">
+                #{height,jdbcType=INTEGER},
+            </if>
+            <if test="weight != null">
+                #{weight,jdbcType=INTEGER},
+            </if>
+            <if test="jkzk != null">
+                #{jkzk,jdbcType=VARCHAR},
+            </if>
+            <if test="experience != null">
+                #{experience,jdbcType=DOUBLE},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="marriage != null">
+                #{marriage,jdbcType=VARCHAR},
+            </if>
+            <if test="yy != null">
+                #{yy,jdbcType=VARCHAR},
+            </if>
+            <if test="cookie != null">
+                #{cookie,jdbcType=VARCHAR},
+            </if>
+            <if test="work != null">
+                #{work,jdbcType=VARCHAR},
+            </if>
+            <if test="sydq != null">
+                #{sydq,jdbcType=VARCHAR},
+            </if>
+            <if test="ssjjr != null">
+                #{ssjjr,jdbcType=VARCHAR},
+            </if>
+            <if test="ssgs != null">
+                #{ssgs,jdbcType=VARCHAR},
+            </if>
+            <if test="salary != null">
+                #{salary,jdbcType=INTEGER},
+            </if>
+            <if test="htStartDate != null">
+                #{htStartDate,jdbcType=DATE},
+            </if>
+            <if test="htEndDate != null">
+                #{htEndDate,jdbcType=DATE},
+            </if>
+            <if test="khyh != null">
+                #{khyh,jdbcType=VARCHAR},
+            </if>
+            <if test="bankCode != null">
+                #{bankCode,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="level != null">
+                #{level,jdbcType=VARCHAR},
+            </if>
+            <if test="flag != null">
+                #{flag,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="result != null">
+                #{result,jdbcType=VARCHAR},
+            </if>
+            <if test="brokerId != null">
+                #{brokerId,jdbcType=INTEGER},
+            </if>
+            <if test="ywxh != null">
+                #{ywxh,jdbcType=VARCHAR},
+            </if>
+            <if test="gspj != null">
+                #{gspj,jdbcType=VARCHAR},
+            </if>
+            <if test="szdq != null">
+                #{szdq,jdbcType=VARCHAR},
+            </if>
+            <if test="fwdq != null">
+                #{fwdq,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.hong.admin.dao.entity.nurse.NurseImportExample"
+            resultType="java.lang.Integer">
+        select count(*) from nurse_import
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update nurse_import
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.name != null">
+                name = #{record.name,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sex != null">
+                sex = #{record.sex,jdbcType=VARCHAR},
+            </if>
+            <if test="record.phone != null">
+                phone = #{record.phone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.idCard != null">
+                id_card = #{record.idCard,jdbcType=VARCHAR},
+            </if>
+            <if test="record.age != null">
+                age = #{record.age,jdbcType=INTEGER},
+            </if>
+            <if test="record.zodiac != null">
+                zodiac = #{record.zodiac,jdbcType=VARCHAR},
+            </if>
+            <if test="record.xl != null">
+                xl = #{record.xl,jdbcType=VARCHAR},
+            </if>
+            <if test="record.mz != null">
+                mz = #{record.mz,jdbcType=VARCHAR},
+            </if>
+            <if test="record.height != null">
+                height = #{record.height,jdbcType=INTEGER},
+            </if>
+            <if test="record.weight != null">
+                weight = #{record.weight,jdbcType=INTEGER},
+            </if>
+            <if test="record.jkzk != null">
+                jkzk = #{record.jkzk,jdbcType=VARCHAR},
+            </if>
+            <if test="record.experience != null">
+                experience = #{record.experience,jdbcType=DOUBLE},
+            </if>
+            <if test="record.address != null">
+                address = #{record.address,jdbcType=VARCHAR},
+            </if>
+            <if test="record.marriage != null">
+                marriage = #{record.marriage,jdbcType=VARCHAR},
+            </if>
+            <if test="record.yy != null">
+                yy = #{record.yy,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cookie != null">
+                cookie = #{record.cookie,jdbcType=VARCHAR},
+            </if>
+            <if test="record.work != null">
+                work = #{record.work,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sydq != null">
+                sydq = #{record.sydq,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ssjjr != null">
+                ssjjr = #{record.ssjjr,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ssgs != null">
+                ssgs = #{record.ssgs,jdbcType=VARCHAR},
+            </if>
+            <if test="record.salary != null">
+                salary = #{record.salary,jdbcType=INTEGER},
+            </if>
+            <if test="record.htStartDate != null">
+                ht_start_date = #{record.htStartDate,jdbcType=DATE},
+            </if>
+            <if test="record.htEndDate != null">
+                ht_end_date = #{record.htEndDate,jdbcType=DATE},
+            </if>
+            <if test="record.khyh != null">
+                khyh = #{record.khyh,jdbcType=VARCHAR},
+            </if>
+            <if test="record.bankCode != null">
+                bank_code = #{record.bankCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.type != null">
+                type = #{record.type,jdbcType=VARCHAR},
+            </if>
+            <if test="record.level != null">
+                level = #{record.level,jdbcType=VARCHAR},
+            </if>
+            <if test="record.flag != null">
+                flag = #{record.flag,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.result != null">
+                result = #{record.result,jdbcType=VARCHAR},
+            </if>
+            <if test="record.brokerId != null">
+                broker_id = #{record.brokerId,jdbcType=INTEGER},
+            </if>
+            <if test="record.ywxh != null">
+                ywxh = #{record.ywxh,jdbcType=VARCHAR},
+            </if>
+            <if test="record.gspj != null">
+                gspj = #{record.gspj,jdbcType=VARCHAR},
+            </if>
+            <if test="record.szdq != null">
+                szdq = #{record.szdq,jdbcType=VARCHAR},
+            </if>
+            <if test="record.fwdq != null">
+                fwdq = #{record.fwdq,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update nurse_import
+        set id = #{record.id,jdbcType=INTEGER},
+        name = #{record.name,jdbcType=VARCHAR},
+        sex = #{record.sex,jdbcType=VARCHAR},
+        phone = #{record.phone,jdbcType=VARCHAR},
+        id_card = #{record.idCard,jdbcType=VARCHAR},
+        age = #{record.age,jdbcType=INTEGER},
+        zodiac = #{record.zodiac,jdbcType=VARCHAR},
+        xl = #{record.xl,jdbcType=VARCHAR},
+        mz = #{record.mz,jdbcType=VARCHAR},
+        height = #{record.height,jdbcType=INTEGER},
+        weight = #{record.weight,jdbcType=INTEGER},
+        jkzk = #{record.jkzk,jdbcType=VARCHAR},
+        experience = #{record.experience,jdbcType=DOUBLE},
+        address = #{record.address,jdbcType=VARCHAR},
+        marriage = #{record.marriage,jdbcType=VARCHAR},
+        yy = #{record.yy,jdbcType=VARCHAR},
+        cookie = #{record.cookie,jdbcType=VARCHAR},
+        work = #{record.work,jdbcType=VARCHAR},
+        sydq = #{record.sydq,jdbcType=VARCHAR},
+        ssjjr = #{record.ssjjr,jdbcType=VARCHAR},
+        ssgs = #{record.ssgs,jdbcType=VARCHAR},
+        salary = #{record.salary,jdbcType=INTEGER},
+        ht_start_date = #{record.htStartDate,jdbcType=DATE},
+        ht_end_date = #{record.htEndDate,jdbcType=DATE},
+        khyh = #{record.khyh,jdbcType=VARCHAR},
+        bank_code = #{record.bankCode,jdbcType=VARCHAR},
+        type = #{record.type,jdbcType=VARCHAR},
+        level = #{record.level,jdbcType=VARCHAR},
+        flag = #{record.flag,jdbcType=VARCHAR},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        result = #{record.result,jdbcType=VARCHAR},
+        broker_id = #{record.brokerId,jdbcType=INTEGER},
+        ywxh = #{record.ywxh,jdbcType=VARCHAR},
+        gspj = #{record.gspj,jdbcType=VARCHAR},
+        szdq = #{record.szdq,jdbcType=VARCHAR},
+        fwdq = #{record.fwdq,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hong.admin.dao.entity.nurse.NurseImport">
+        update nurse_import
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="idCard != null">
+                id_card = #{idCard,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=INTEGER},
+            </if>
+            <if test="zodiac != null">
+                zodiac = #{zodiac,jdbcType=VARCHAR},
+            </if>
+            <if test="xl != null">
+                xl = #{xl,jdbcType=VARCHAR},
+            </if>
+            <if test="mz != null">
+                mz = #{mz,jdbcType=VARCHAR},
+            </if>
+            <if test="height != null">
+                height = #{height,jdbcType=INTEGER},
+            </if>
+            <if test="weight != null">
+                weight = #{weight,jdbcType=INTEGER},
+            </if>
+            <if test="jkzk != null">
+                jkzk = #{jkzk,jdbcType=VARCHAR},
+            </if>
+            <if test="experience != null">
+                experience = #{experience,jdbcType=DOUBLE},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="marriage != null">
+                marriage = #{marriage,jdbcType=VARCHAR},
+            </if>
+            <if test="yy != null">
+                yy = #{yy,jdbcType=VARCHAR},
+            </if>
+            <if test="cookie != null">
+                cookie = #{cookie,jdbcType=VARCHAR},
+            </if>
+            <if test="work != null">
+                work = #{work,jdbcType=VARCHAR},
+            </if>
+            <if test="sydq != null">
+                sydq = #{sydq,jdbcType=VARCHAR},
+            </if>
+            <if test="ssjjr != null">
+                ssjjr = #{ssjjr,jdbcType=VARCHAR},
+            </if>
+            <if test="ssgs != null">
+                ssgs = #{ssgs,jdbcType=VARCHAR},
+            </if>
+            <if test="salary != null">
+                salary = #{salary,jdbcType=INTEGER},
+            </if>
+            <if test="htStartDate != null">
+                ht_start_date = #{htStartDate,jdbcType=DATE},
+            </if>
+            <if test="htEndDate != null">
+                ht_end_date = #{htEndDate,jdbcType=DATE},
+            </if>
+            <if test="khyh != null">
+                khyh = #{khyh,jdbcType=VARCHAR},
+            </if>
+            <if test="bankCode != null">
+                bank_code = #{bankCode,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="level != null">
+                level = #{level,jdbcType=VARCHAR},
+            </if>
+            <if test="flag != null">
+                flag = #{flag,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="result != null">
+                result = #{result,jdbcType=VARCHAR},
+            </if>
+            <if test="brokerId != null">
+                broker_id = #{brokerId,jdbcType=INTEGER},
+            </if>
+            <if test="ywxh != null">
+                ywxh = #{ywxh,jdbcType=VARCHAR},
+            </if>
+            <if test="gspj != null">
+                gspj = #{gspj,jdbcType=VARCHAR},
+            </if>
+            <if test="szdq != null">
+                szdq = #{szdq,jdbcType=VARCHAR},
+            </if>
+            <if test="fwdq != null">
+                fwdq = #{fwdq,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hong.admin.dao.entity.nurse.NurseImport">
+    update nurse_import
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      zodiac = #{zodiac,jdbcType=VARCHAR},
+      xl = #{xl,jdbcType=VARCHAR},
+      mz = #{mz,jdbcType=VARCHAR},
+      height = #{height,jdbcType=INTEGER},
+      weight = #{weight,jdbcType=INTEGER},
+      jkzk = #{jkzk,jdbcType=VARCHAR},
+      experience = #{experience,jdbcType=DOUBLE},
+      address = #{address,jdbcType=VARCHAR},
+      marriage = #{marriage,jdbcType=VARCHAR},
+      yy = #{yy,jdbcType=VARCHAR},
+      cookie = #{cookie,jdbcType=VARCHAR},
+      work = #{work,jdbcType=VARCHAR},
+      sydq = #{sydq,jdbcType=VARCHAR},
+      ssjjr = #{ssjjr,jdbcType=VARCHAR},
+      ssgs = #{ssgs,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=INTEGER},
+      ht_start_date = #{htStartDate,jdbcType=DATE},
+      ht_end_date = #{htEndDate,jdbcType=DATE},
+      khyh = #{khyh,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      result = #{result,jdbcType=VARCHAR},
+      broker_id = #{brokerId,jdbcType=INTEGER},
+      ywxh = #{ywxh,jdbcType=VARCHAR},
+      gspj = #{gspj,jdbcType=VARCHAR},
+      szdq = #{szdq,jdbcType=VARCHAR},
+      fwdq = #{fwdq,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="selectByExampleNoPage" parameterType="com.hong.admin.dao.entity.nurse.NurseImportExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from nurse_import
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+</mapper>

@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hong.admin.dao.mapper.order.MultiOrderAppDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.hong.admin.dao.entity.order.MultiOrderAppDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="service_time" property="serviceTime" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="service_week" property="serviceWeek" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="order_appointment_id" property="orderAppointmentId" jdbcType="INTEGER" />
+    <result column="house_area" property="houseArea" jdbcType="VARCHAR" />
+    <result column="month_package" property="monthPackage" jdbcType="INTEGER" />
+    <result column="pay" property="pay" jdbcType="REAL" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="cook" property="cook" jdbcType="VARCHAR" />
+    <result column="month_pay" property="monthPay" jdbcType="INTEGER" />
+    <result column="face_address" property="faceAddress" jdbcType="INTEGER" />
+    <result column="face_time" property="faceTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, service_time, address, name, phone_number, remarks, service_week, create_time, 
+    order_appointment_id, house_area, month_package, pay, order_id, cook, month_pay, 
+    face_address, face_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hong.admin.dao.entity.order.MultiOrderAppDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from multi_order_app_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from multi_order_app_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from multi_order_app_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hong.admin.dao.entity.order.MultiOrderAppDetailExample" >
+    delete from multi_order_app_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hong.admin.dao.entity.order.MultiOrderAppDetail" >
+    insert into multi_order_app_detail (id, service_time, address, 
+      name, phone_number, remarks, 
+      service_week, create_time, order_appointment_id, 
+      house_area, month_package, pay, 
+      order_id, cook, month_pay, 
+      face_address, face_time)
+    values (#{id,jdbcType=INTEGER}, #{serviceTime,jdbcType=VARCHAR}, #{address,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
+      #{serviceWeek,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{orderAppointmentId,jdbcType=INTEGER}, 
+      #{houseArea,jdbcType=VARCHAR}, #{monthPackage,jdbcType=INTEGER}, #{pay,jdbcType=REAL}, 
+      #{orderId,jdbcType=INTEGER}, #{cook,jdbcType=VARCHAR}, #{monthPay,jdbcType=INTEGER}, 
+      #{faceAddress,jdbcType=INTEGER}, #{faceTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hong.admin.dao.entity.order.MultiOrderAppDetail" >
+    insert into multi_order_app_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serviceTime != null" >
+        service_time,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="serviceWeek != null" >
+        service_week,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="orderAppointmentId != null" >
+        order_appointment_id,
+      </if>
+      <if test="houseArea != null" >
+        house_area,
+      </if>
+      <if test="monthPackage != null" >
+        month_package,
+      </if>
+      <if test="pay != null" >
+        pay,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="cook != null" >
+        cook,
+      </if>
+      <if test="monthPay != null" >
+        month_pay,
+      </if>
+      <if test="faceAddress != null" >
+        face_address,
+      </if>
+      <if test="faceTime != null" >
+        face_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serviceTime != null" >
+        #{serviceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceWeek != null" >
+        #{serviceWeek,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderAppointmentId != null" >
+        #{orderAppointmentId,jdbcType=INTEGER},
+      </if>
+      <if test="houseArea != null" >
+        #{houseArea,jdbcType=VARCHAR},
+      </if>
+      <if test="monthPackage != null" >
+        #{monthPackage,jdbcType=INTEGER},
+      </if>
+      <if test="pay != null" >
+        #{pay,jdbcType=REAL},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="cook != null" >
+        #{cook,jdbcType=VARCHAR},
+      </if>
+      <if test="monthPay != null" >
+        #{monthPay,jdbcType=INTEGER},
+      </if>
+      <if test="faceAddress != null" >
+        #{faceAddress,jdbcType=INTEGER},
+      </if>
+      <if test="faceTime != null" >
+        #{faceTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hong.admin.dao.entity.order.MultiOrderAppDetailExample" resultType="java.lang.Integer" >
+    select count(*) from multi_order_app_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update multi_order_app_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceTime != null" >
+        service_time = #{record.serviceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneNumber != null" >
+        phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceWeek != null" >
+        service_week = #{record.serviceWeek,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderAppointmentId != null" >
+        order_appointment_id = #{record.orderAppointmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.houseArea != null" >
+        house_area = #{record.houseArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.monthPackage != null" >
+        month_package = #{record.monthPackage,jdbcType=INTEGER},
+      </if>
+      <if test="record.pay != null" >
+        pay = #{record.pay,jdbcType=REAL},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cook != null" >
+        cook = #{record.cook,jdbcType=VARCHAR},
+      </if>
+      <if test="record.monthPay != null" >
+        month_pay = #{record.monthPay,jdbcType=INTEGER},
+      </if>
+      <if test="record.faceAddress != null" >
+        face_address = #{record.faceAddress,jdbcType=INTEGER},
+      </if>
+      <if test="record.faceTime != null" >
+        face_time = #{record.faceTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update multi_order_app_detail
+    set id = #{record.id,jdbcType=INTEGER},
+      service_time = #{record.serviceTime,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      service_week = #{record.serviceWeek,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      order_appointment_id = #{record.orderAppointmentId,jdbcType=INTEGER},
+      house_area = #{record.houseArea,jdbcType=VARCHAR},
+      month_package = #{record.monthPackage,jdbcType=INTEGER},
+      pay = #{record.pay,jdbcType=REAL},
+      order_id = #{record.orderId,jdbcType=INTEGER},
+      cook = #{record.cook,jdbcType=VARCHAR},
+      month_pay = #{record.monthPay,jdbcType=INTEGER},
+      face_address = #{record.faceAddress,jdbcType=INTEGER},
+      face_time = #{record.faceTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hong.admin.dao.entity.order.MultiOrderAppDetail" >
+    update multi_order_app_detail
+    <set >
+      <if test="serviceTime != null" >
+        service_time = #{serviceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceWeek != null" >
+        service_week = #{serviceWeek,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderAppointmentId != null" >
+        order_appointment_id = #{orderAppointmentId,jdbcType=INTEGER},
+      </if>
+      <if test="houseArea != null" >
+        house_area = #{houseArea,jdbcType=VARCHAR},
+      </if>
+      <if test="monthPackage != null" >
+        month_package = #{monthPackage,jdbcType=INTEGER},
+      </if>
+      <if test="pay != null" >
+        pay = #{pay,jdbcType=REAL},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="cook != null" >
+        cook = #{cook,jdbcType=VARCHAR},
+      </if>
+      <if test="monthPay != null" >
+        month_pay = #{monthPay,jdbcType=INTEGER},
+      </if>
+      <if test="faceAddress != null" >
+        face_address = #{faceAddress,jdbcType=INTEGER},
+      </if>
+      <if test="faceTime != null" >
+        face_time = #{faceTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hong.admin.dao.entity.order.MultiOrderAppDetail" >
+    update multi_order_app_detail
+    set service_time = #{serviceTime,jdbcType=VARCHAR},
+      address = #{address,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      service_week = #{serviceWeek,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      order_appointment_id = #{orderAppointmentId,jdbcType=INTEGER},
+      house_area = #{houseArea,jdbcType=VARCHAR},
+      month_package = #{monthPackage,jdbcType=INTEGER},
+      pay = #{pay,jdbcType=REAL},
+      order_id = #{orderId,jdbcType=INTEGER},
+      cook = #{cook,jdbcType=VARCHAR},
+      month_pay = #{monthPay,jdbcType=INTEGER},
+      face_address = #{faceAddress,jdbcType=INTEGER},
+      face_time = #{faceTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

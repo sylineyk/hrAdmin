@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 基本参数配置 -->
+    <settings>
+        <setting name="useGeneratedKeys" value="true"/>
+        <setting name="defaultExecutorType" value="SIMPLE"/>
+        <setting name="logImpl" value="Log4j2"/>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="defaultStatementTimeout" value="60"/>
+    </settings>
+
+
+    <!-- 第三方插件配置 -->
+    <plugins>
+        <plugin
+                interceptor="com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor">
+            <property name="dialectClass"
+                      value="com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect"/>
+        </plugin>
+    </plugins>
+
+    <mappers>
+
+        <mapper
+                resource="com/chouguanjia/admin/security/dao/xml/PermissionDaoMapper.xml"/>
+        <mapper
+                resource="com/chouguanjia/admin/security/dao/xml/UserDaoMapper.xml"/>
+
+        <mapper
+                resource="com/chouguanjia/admin/dao/mapper/xml/broker/BrokerMapper.xml"/>
+
+        <mapper
+                resource="com/chouguanjia/admin/dao/mapper/xml/nurse/NurseMapper.xml"/>
+
+        <mapper
+                resource="com/chouguanjia/admin/dao/mapper/xml/nurse/NurseImgMapper.xml"/>
+
+
+        <mapper
+                resource="com/chouguanjia/admin/dao/mapper/xml/nurse/NurseImportMapper.xml"/>
+
+        <mapper
+                resource="com/chouguanjia/admin/dao/mapper/xml/broker/CompanyMapper.xml"/>
+
+        <mapper
+                resource="com/chouguanjia/admin/dao/mapper/xml/customer/CustomerMapper.xml"/>
+
+        <mapper
+                resource="com/chouguanjia/admin/dao/mapper/xml/admin/SysUserMapper.xml"/>
+
+        <mapper
+                resource="com/chouguanjia/admin/dao/mapper/xml/order/MultiOrderAppDetailMapper.xml"/>
+        <mapper
+                resource="com/chouguanjia/admin/dao/mapper/xml/order/NonStandardOrderAppDetailMapper.xml"/>
+        <mapper
+                resource="com/chouguanjia/admin/dao/mapper/xml/order/OnceOrderAppDetailMapper.xml"/>
+        <mapper
+                resource="com/chouguanjia/admin/dao/mapper/xml/order/OrderFormalMapper.xml"/>
+
+        <mapper
+                resource="com/chouguanjia/admin/dao/mapper/xml/order/PayOrderMapper.xml"/>
+    </mappers>
+</configuration>

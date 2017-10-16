@@ -1,0 +1,79 @@
+/*通用参数配置*/
+$size   : 75;
+
+/*字体大小配置*/
+$number_32 : 32px;
+$number_30 : 30px;
+$number_26 : 26px;
+$number_16 : 16px;
+$number_14 : 14px;
+$number_12 : 12px;
+
+
+/*高度参数配置*/
+$toolbar   : 48px;
+$btn_height   : $toolbar;
+
+
+/*颜色配置项*/
+$bg-color         : #f2f2f2;
+$black-color      : #000000;
+$black-light-color: #424242;
+$org-color        : #ffa42d;
+$gray-color       : #b0b0b0;
+$gray-light-color : #bcbcbc;
+$red-color        : #ff0000;
+$blue-light-coolor: #448aff;
+$green-color      : #6aa84f;
+$white-color      : #ffffff;
+$br-color         : #e6e6e6;
+$btn-bg-color     : $org-color;
+
+/*icon配置区*/
+$arrow-right          : '../images/arrow/ic_01_arrow.png';
+$phone-icon           : '../images/inline-icon/ic_05_phone.png';
+$code-icon            : '../images/inline-icon/ic_05_verification.png';
+$password-icon        : '../images/inline-icon/ic_05_password.png';
+$tel-icon             : '../images/toolbar/ic_01_call.png';
+$fav-icon-default     : '../images/toolbar/ic_01_star.png';
+$fav-icon-action      : '../images/toolbar/ic_01_star2.png';
+$checkbox-default     : '../images/controls-icon/ic_01_choose.png';
+$checkbox-action      : '../images/controls-icon/ic_01_choose1.png';
+$hook-icon            : '../images/inline-icon/ic_01_right.png';
+$nav-default          : '../images/controls-icon/ic_01_steps2.jpg';
+$nav-check            : '../images/controls-icon/ic_01_steps1.jpg';
+$add-icon             : '../images/inline-icon/ic_02_add.png';
+$work-default         : '../images/toolbar/ic_01_home.png';
+$work-action          : '../images/toolbar/ic_01_home_click.png';
+$mywork-default       : '../images/toolbar/ic_02_home.png';
+$mywork-action        : '../images/toolbar/ic_02_home_click.png';
+$uinfo-default        : '../images/toolbar/ic_01_user1_click.png';
+$uinfo-action         : '../images/toolbar/ic_01_user1.png';
+$ucenter-icon-sc      : '../images/inline-icon/ic_01_star3.png';
+$ucenter-icon-yy      : '../images/inline-icon/ic_01_booking.png';
+$ucenter-icon-dd      : '../images/inline-icon/ic_01_order.png';
+$ucenter-icon-zt      : '../images/inline-icon/ic_01_suspend.png';
+$ucenter-icon-fw      : '../images/inline-icon/ic_01_contract.png';
+$ucenter-icon-wt      : '../images/inline-icon/ic_01_peoblem.png';
+$ucenter-icon-sz      : '../images/inline-icon/ic_01_setting.png';
+$ucenter-icon-pb      : '../images/inline-icon/ic_02_date.png';
+$ucenter-icon-gz      : '../images/inline-icon/ic_02_money.png';
+$ucenter-icon-sh      : '../images/inline-icon/ic_02_gogogo.png';
+$ucenter-icon-xc      : '../images/inline-icon/ic_02_pic.png';
+$ucenter-icon-gs      : '../images/inline-icon/ic_03_card.png';
+$ucenter-icon-js      : '../images/inline-icon/ic_03_clearing.png';
+$ucenter-icon-tc      : '../images/inline-icon/ic_03_money.png';
+$ucenter-icon-xx      : '../images/inline-icon/ic_03_information.png';
+$ucenter-icon-ll      : '../images/inline-icon/ic_02_card.png';
+$ucenter-bg           : '../images/background/ic_01_bg.png';
+$upload_add           : '../images/controls-icon/ic_02_add.png';
+$upload_close         : '../images/controls-icon/ic_02_off.png';
+$ay-default           : '../images/toolbar/ic_03_auntie.png';
+$ay-action            : '../images/toolbar/ic_03_auntie_click.png';
+$dd-default           : '../images/toolbar/ic_03_order.png';
+$dd-action            : '../images/toolbar/ic_03_order_click.png';
+$control-date-default : '../images/control-date/ic_02_work.png';
+$control-date-today   : '../images/control-date/ic_02_today.png';
+$control-date-rest    : '../images/control-date/ic_02_rest.png';
+$control-date-leave   : '../images/control-date/ic_02_leave.png';
+$input-search         : '../images/inline-icon/ic_search.png';

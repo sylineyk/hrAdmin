@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="error" name="chouguanjia">
+    <Properties>
+        <Property name="appName">chouguanjia</Property>
+        <Property name="logsDir">./logs/${appName}
+        </Property>
+    </Properties>
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %p %l [%t] %m%n"/>
+        </Console>
+        <RollingRandomAccessFile name="systemLogFile"
+                                 fileName="${logsDir}/${appName}.log"
+                                 filePattern="${logsDir}/$${date:yyyy-MM}/${appName}-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d %p %l [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="errorLogFile"
+                                 fileName="${logsDir}/errors/${appName}-error.log"
+                                 filePattern="${logsDir}/errors/$${date:yyyy-MM}/${appName}-error-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d %p %l [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+
+        <!-- 用以运营的日志 -->
+        <RollingRandomAccessFile name="customerLog"
+                                 fileName="${logsDir}/Operate/customerLog.log"
+                                 filePattern="${logsDir}/Operate/$${date:yyyy-MM}/customerLog/customerLog-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="orderLog"
+                                 fileName="${logsDir}/Operate/orderLog.log"
+                                 filePattern="${logsDir}/Operate/$${date:yyyy-MM}/orderLog/orderLog-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="brokerLog"
+                                 fileName="${logsDir}/Operate/brokerLog.log"
+                                 filePattern="${logsDir}/Operate/$${date:yyyy-MM}/brokerLog/brokerLog-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="nurseLog"
+                                 fileName="${logsDir}/Operate/nurseLog.log"
+                                 filePattern="${logsDir}/Operate/$${date:yyyy-MM}/nurseLog/nurseLog-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+
+
+    </Appenders>
+    <Loggers>
+        <Root level="error">
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+        <Logger level="error" name="com.chouguanjia" additivity="false">
+            <AppenderRef ref="errorLogFile"/>
+        </Logger>
+        <Logger level="info" name="com.chouguanjia" additivity="true">
+            <AppenderRef ref="systemLogFile"/>
+        </Logger>
+        <Logger level="error" name="org.springframework" additivity="false">
+            <AppenderRef ref="errorLogFile"/>
+        </Logger>
+        <Logger level="info" name="org.springframework" additivity="true">
+            <AppenderRef ref="systemLogFile"/>
+        </Logger>
+
+        <!-- 用以运营的日志 -->
+        <Logger level="info" name="CustomerLog" additivity="false">
+            <AppenderRef ref="customerLog"/>
+        </Logger>
+        <Logger level="info" name="OrderLog" additivity="false">
+            <AppenderRef ref="orderLog"/>
+        </Logger>
+        <Logger level="info" name="BrokerLog" additivity="false">
+            <AppenderRef ref="brokerLog"/>
+        </Logger>
+        <Logger level="info" name="NurseLog" additivity="false">
+            <AppenderRef ref="nurseLog"/>
+        </Logger>
+    </Loggers>
+
+</Configuration>

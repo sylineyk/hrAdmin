@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hong.admin.dao.mapper.order.PayOrderMapper">
+    <resultMap id="BaseResultMap" type="com.hong.admin.dao.entity.order.PayOrder">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="order_id" property="orderId" jdbcType="INTEGER"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="nurse_name" property="nurseName" jdbcType="VARCHAR"/>
+        <result column="nurse_phone" property="nursePhone" jdbcType="VARCHAR"/>
+        <result column="nurse_id" property="nurseId" jdbcType="INTEGER"/>
+        <result column="broker_id" property="brokerId" jdbcType="INTEGER"/>
+        <result column="broker_name" property="brokerName" jdbcType="VARCHAR"/>
+        <result column="broker_phone" property="brokerPhone" jdbcType="VARCHAR"/>
+        <result column="fwf" property="fwf" jdbcType="REAL"/>
+        <result column="dj" property="dj" jdbcType="INTEGER"/>
+        <result column="khzf" property="khzf" jdbcType="REAL"/>
+        <result column="gz" property="gz" jdbcType="INTEGER"/>
+        <result column="pay_time" property="payTime" jdbcType="TIMESTAMP"/>
+        <result column="nurse_bank_code" property="nurseBankCode" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, order_id, code, type, nurse_name, nurse_phone, nurse_id, broker_id, broker_name, 
+    broker_phone, fwf, dj, khzf, gz, pay_time, nurse_bank_code
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap"
+            parameterType="com.hong.admin.dao.entity.order.PayOrderExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from pay_order
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from pay_order
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from pay_order
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.hong.admin.dao.entity.order.PayOrderExample">
+        delete from pay_order
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.hong.admin.dao.entity.order.PayOrder">
+    insert into pay_order (id, order_id, code, 
+      type, nurse_name, nurse_phone, 
+      nurse_id, broker_id, broker_name, 
+      broker_phone, fwf, dj, 
+      khzf, gz, pay_time, nurse_bank_code
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{nurseName,jdbcType=VARCHAR}, #{nursePhone,jdbcType=VARCHAR}, 
+      #{nurseId,jdbcType=INTEGER}, #{brokerId,jdbcType=INTEGER}, #{brokerName,jdbcType=VARCHAR}, 
+      #{brokerPhone,jdbcType=VARCHAR}, #{fwf,jdbcType=REAL}, #{dj,jdbcType=INTEGER}, 
+      #{khzf,jdbcType=REAL}, #{gz,jdbcType=INTEGER}, #{payTime,jdbcType=TIMESTAMP}, #{nurseBankCode,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.hong.admin.dao.entity.order.PayOrder">
+        insert into pay_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="orderId != null">
+                order_id,
+            </if>
+            <if test="code != null">
+                code,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="nurseName != null">
+                nurse_name,
+            </if>
+            <if test="nursePhone != null">
+                nurse_phone,
+            </if>
+            <if test="nurseId != null">
+                nurse_id,
+            </if>
+            <if test="brokerId != null">
+                broker_id,
+            </if>
+            <if test="brokerName != null">
+                broker_name,
+            </if>
+            <if test="brokerPhone != null">
+                broker_phone,
+            </if>
+            <if test="fwf != null">
+                fwf,
+            </if>
+            <if test="dj != null">
+                dj,
+            </if>
+            <if test="khzf != null">
+                khzf,
+            </if>
+            <if test="gz != null">
+                gz,
+            </if>
+            <if test="payTime != null">
+                pay_time,
+            </if>
+            <if test="nurseBankCode != null">
+                nurse_bank_code,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="orderId != null">
+                #{orderId,jdbcType=INTEGER},
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="nurseName != null">
+                #{nurseName,jdbcType=VARCHAR},
+            </if>
+            <if test="nursePhone != null">
+                #{nursePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="nurseId != null">
+                #{nurseId,jdbcType=INTEGER},
+            </if>
+            <if test="brokerId != null">
+                #{brokerId,jdbcType=INTEGER},
+            </if>
+            <if test="brokerName != null">
+                #{brokerName,jdbcType=VARCHAR},
+            </if>
+            <if test="brokerPhone != null">
+                #{brokerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="fwf != null">
+                #{fwf,jdbcType=REAL},
+            </if>
+            <if test="dj != null">
+                #{dj,jdbcType=INTEGER},
+            </if>
+            <if test="khzf != null">
+                #{khzf,jdbcType=REAL},
+            </if>
+            <if test="gz != null">
+                #{gz,jdbcType=INTEGER},
+            </if>
+            <if test="payTime != null">
+                #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="nurseBankCode != null">
+                #{nurseBankCode,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.hong.admin.dao.entity.order.PayOrderExample"
+            resultType="java.lang.Integer">
+        select count(*) from pay_order
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update pay_order
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.orderId != null">
+                order_id = #{record.orderId,jdbcType=INTEGER},
+            </if>
+            <if test="record.code != null">
+                code = #{record.code,jdbcType=VARCHAR},
+            </if>
+            <if test="record.type != null">
+                type = #{record.type,jdbcType=VARCHAR},
+            </if>
+            <if test="record.nurseName != null">
+                nurse_name = #{record.nurseName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.nursePhone != null">
+                nurse_phone = #{record.nursePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.nurseId != null">
+                nurse_id = #{record.nurseId,jdbcType=INTEGER},
+            </if>
+            <if test="record.brokerId != null">
+                broker_id = #{record.brokerId,jdbcType=INTEGER},
+            </if>
+            <if test="record.brokerName != null">
+                broker_name = #{record.brokerName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.brokerPhone != null">
+                broker_phone = #{record.brokerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.fwf != null">
+                fwf = #{record.fwf,jdbcType=REAL},
+            </if>
+            <if test="record.dj != null">
+                dj = #{record.dj,jdbcType=INTEGER},
+            </if>
+            <if test="record.khzf != null">
+                khzf = #{record.khzf,jdbcType=REAL},
+            </if>
+            <if test="record.gz != null">
+                gz = #{record.gz,jdbcType=INTEGER},
+            </if>
+            <if test="record.payTime != null">
+                pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.nurseBankCode != null">
+                nurse_bank_code = #{record.nurseBankCode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update pay_order
+        set id = #{record.id,jdbcType=INTEGER},
+        order_id = #{record.orderId,jdbcType=INTEGER},
+        code = #{record.code,jdbcType=VARCHAR},
+        type = #{record.type,jdbcType=VARCHAR},
+        nurse_name = #{record.nurseName,jdbcType=VARCHAR},
+        nurse_phone = #{record.nursePhone,jdbcType=VARCHAR},
+        nurse_id = #{record.nurseId,jdbcType=INTEGER},
+        broker_id = #{record.brokerId,jdbcType=INTEGER},
+        broker_name = #{record.brokerName,jdbcType=VARCHAR},
+        broker_phone = #{record.brokerPhone,jdbcType=VARCHAR},
+        fwf = #{record.fwf,jdbcType=REAL},
+        dj = #{record.dj,jdbcType=INTEGER},
+        khzf = #{record.khzf,jdbcType=REAL},
+        gz = #{record.gz,jdbcType=INTEGER},
+        pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+        nurse_bank_code = #{record.nurseBankCode,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hong.admin.dao.entity.order.PayOrder">
+        update pay_order
+        <set>
+            <if test="orderId != null">
+                order_id = #{orderId,jdbcType=INTEGER},
+            </if>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="nurseName != null">
+                nurse_name = #{nurseName,jdbcType=VARCHAR},
+            </if>
+            <if test="nursePhone != null">
+                nurse_phone = #{nursePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="nurseId != null">
+                nurse_id = #{nurseId,jdbcType=INTEGER},
+            </if>
+            <if test="brokerId != null">
+                broker_id = #{brokerId,jdbcType=INTEGER},
+            </if>
+            <if test="brokerName != null">
+                broker_name = #{brokerName,jdbcType=VARCHAR},
+            </if>
+            <if test="brokerPhone != null">
+                broker_phone = #{brokerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="fwf != null">
+                fwf = #{fwf,jdbcType=REAL},
+            </if>
+            <if test="dj != null">
+                dj = #{dj,jdbcType=INTEGER},
+            </if>
+            <if test="khzf != null">
+                khzf = #{khzf,jdbcType=REAL},
+            </if>
+            <if test="gz != null">
+                gz = #{gz,jdbcType=INTEGER},
+            </if>
+            <if test="payTime != null">
+                pay_time = #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="nurseBankCode != null">
+                nurse_bank_code = #{nurseBankCode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hong.admin.dao.entity.order.PayOrder">
+    update pay_order
+    set order_id = #{orderId,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      nurse_name = #{nurseName,jdbcType=VARCHAR},
+      nurse_phone = #{nursePhone,jdbcType=VARCHAR},
+      nurse_id = #{nurseId,jdbcType=INTEGER},
+      broker_id = #{brokerId,jdbcType=INTEGER},
+      broker_name = #{brokerName,jdbcType=VARCHAR},
+      broker_phone = #{brokerPhone,jdbcType=VARCHAR},
+      fwf = #{fwf,jdbcType=REAL},
+      dj = #{dj,jdbcType=INTEGER},
+      khzf = #{khzf,jdbcType=REAL},
+      gz = #{gz,jdbcType=INTEGER},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      nurse_bank_code = #{nurseBankCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="selectByExamplePage" resultMap="BaseResultMap"
+            parameterType="com.hong.admin.dao.entity.order.PayOrderExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from pay_order
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+
+
+    <select id="selectJjrDetailByDate" resultType="map">
+        select broker_phone,sum(khzf) zje from pay_order where
+        pay_time BETWEEN  #{fromDate,jdbcType=TIMESTAMP} and #{endDate,jdbcType=TIMESTAMP} and type !='5'
+        group by broker_phone
+    </select>
+
+    <select id="selectAyDetailByDate" resultType="map">
+        select nurse_phone,sum(khzf) zje from pay_order where
+        pay_time BETWEEN  #{fromDate,jdbcType=TIMESTAMP} and #{endDate,jdbcType=TIMESTAMP} and type ='5'
+        group by nurse_phone
+    </select>
+</mapper>
